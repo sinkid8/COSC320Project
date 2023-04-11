@@ -43,9 +43,10 @@ public class KMPcomparing {
 			String[] currentSentences = sentencesList.get(i);
 			for (String firstSentence : sentenceArray) {
 				for (String currentSentence : currentSentences) {
-					System.out.println("Comparing '" + firstSentence + "' and '" + currentSentence + "'");
+					// System.out.println("Comparing '" + firstSentence + "' and '" +
+					// currentSentence + "'");
 					if (findSubstringKMP(currentSentence, firstSentence)) {
-						System.out.println(firstSentence + " found in " + currentSentence);
+						System.out.println("Plagiarism detected: " + firstSentence + " found in " + currentSentence);
 					}
 				}
 			}

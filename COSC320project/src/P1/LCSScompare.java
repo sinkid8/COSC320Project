@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
 public class LCSScompare {
 
 	public static void main(String[] args) {
@@ -44,9 +43,10 @@ public class LCSScompare {
 			String[] currentSentences = sentencesList.get(i);
 			for (String firstSentence : sentenceArray) {
 				for (String currentSentence : currentSentences) {
-					System.out.println("Comparing '" + firstSentence + "' and '" + currentSentence + "'");
+					// System.out.println("Comparing '" + firstSentence + "' and '" +
+					// currentSentence + "'");
 					if (findSubstringLCSS(currentSentence, firstSentence)) {
-						System.out.println(firstSentence + " found in " + currentSentence);
+						System.out.println("Plagiarism detected: " + firstSentence + " found in " + currentSentence);
 					}
 				}
 			}
@@ -104,26 +104,25 @@ public class LCSScompare {
 	}
 
 	public static boolean findSubstringLCSS(String text, String pattern) {
-        int m = text.length();
-        int n = pattern.length();
-    
-        int[][] dp = new int[m+1][n+1];
-    
-        // Fill the DP table
-        for (int i = 1; i <= m; i++) {
-            for (int j = 1; j <= n; j++) {
-                if (text.charAt(i-1) == pattern.charAt(j-1)) {
-                    dp[i][j] = dp[i-1][j-1] + 1;
-                } else {
-                    dp[i][j] = Math.max(dp[i][j-1], dp[i-1][j]);
-                }
-            }
-        }
-    
-        // Check if LCS length is equal to pattern length
-        return dp[m][n] == n;
-    }
-    
+		int m = text.length();
+		int n = pattern.length();
+
+		int[][] dp = new int[m + 1][n + 1];
+
+		// Fill the DP table
+		for (int i = 1; i <= m; i++) {
+			for (int j = 1; j <= n; j++) {
+				if (text.charAt(i - 1) == pattern.charAt(j - 1)) {
+					dp[i][j] = dp[i - 1][j - 1] + 1;
+				} else {
+					dp[i][j] = Math.max(dp[i][j - 1], dp[i - 1][j]);
+				}
+			}
+		}
+
+		// Check if LCS length is equal to pattern length
+		return dp[m][n] == n;
+	}
 
 	public static int[] computeLSPTable(String pattern) {
 		int[] lsp = new int[pattern.length()];
@@ -147,6 +146,3 @@ public class LCSScompare {
 		return lsp;
 	}
 }
-
-    
-
